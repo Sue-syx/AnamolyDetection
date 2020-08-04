@@ -1,0 +1,80 @@
+{
+  "data":
+  {
+    "name": "ReadDataFile",
+    "params": {
+      "path": "data/pimaTest_norm35.csv",
+      "fileType":"csv"
+    }
+  }
+,
+  "pipelines": {
+    "stages": [
+      {
+        "estimators": [
+          {
+            "name": "StandardScaler",
+            "params": {
+            }
+          }
+        ]
+      },
+      {
+        "estimators": [
+          {
+            "name": "IsolationForest",
+            "params": {
+              "outputFeatureName": "iforest_result"
+            }
+          },
+          {
+            "name": "KNNBasedDetection",
+            "params": {
+              "kList": [3,5],
+              "outputFeatureName": "kdist_result",
+              "useSubspace": true,
+              "subspaceParams": {
+                "subspaceMinDim": 2,
+                "subspaceMaxDim": 7,
+                "subspaceNumSpaces": 2,
+                "useFullSpace": true
+              }
+            }
+          },
+          {
+            "name": "LOF",
+            "params": {
+              "kList": [3,5],
+              "outputFeatureName": "lof_result",
+              "useSubspace": false,
+              "subspaceParams": {
+                "subspaceMinDim": 2,
+                "subspaceMaxDim": 7,
+                "subspaceNumSpaces": 2,
+                "useFullSpace": true
+              }
+            }
+          },
+          {
+            "name": "Mahalanobis",
+            "params": {
+              "outputFeatureName": "mahalanobis_result",
+              "useSubspace": true,
+              "subspaceParams": {
+                "subspaceMinDim": 2,
+                "subspaceMaxDim": 7,
+                "subspaceNumSpaces": 2,
+                "useFullSpace": false
+              }
+            }
+          }
+        ]
+      }
+    ]
+  },
+  "runExplanations": true,
+  "finalOutputPath": "results_pipeline/pimaTest_norm35",
+
+  "autoOD": true
+
+}
