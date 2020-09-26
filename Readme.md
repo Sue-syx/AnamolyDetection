@@ -9,7 +9,7 @@
 ## Setup and Installation
 1. **Clone the repo**
     ```bash
-    git clone https://github.com/yizhouyan/AnomalyDetection.git
+    git clone https://github.com/Sue-syx/AnomalyDetection.git
     ```
 
 2. **Install dependencies**
